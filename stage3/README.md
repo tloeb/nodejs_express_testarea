@@ -6,7 +6,13 @@ express --no-view app
 DEBUG=myapp:* npm start
 ```
 
-# Non persistent userlist
+# Setup mongodb
+
+```
+sudo docker run -d -p 27017:27017 -v ./data:/data/db mongo
+```
+
+# Persistent User List
 
 ## Get user list
 ```
