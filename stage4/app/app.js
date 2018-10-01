@@ -16,7 +16,11 @@ var app = express();
 app.use(hostValidation({ hosts: ['127.0.0.1:3000',
                                  'localhost:3000'] }))
 
+// Setup security related HTTP Headers via helmet
 app.use(helmet());
+
+// Use HTTPS instead of HTTP
+
 
 app.use(logger('dev'));
 app.use(express.json());
