@@ -1,9 +1,19 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/userdata');
+var mongoUrl = "mongodb://localhost/userdata";
 
+var connectWithRetry = function() {
+    return mongoose.connect(mongoUrl, function(err) {
+        if (err) {
+            console.error('Failed to connect to mongo on startup - retrying in 5 sec');
+            setTimeout(connectWithRetry, 5000);
+        }
+    });
+};
+
+connectWithRetry();
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+
 db.once('open', function() {
   console.log("connected to db...")
 });
@@ -14,4 +24,7 @@ var userSchema = new mongoose.Schema({
 
 var User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = { 
+    User,
+    connectWithRetry
+}
