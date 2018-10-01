@@ -10,7 +10,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// Protection against DNS Rebind attacks
+// Protection against DNS Rebind attacks which bypasses the browser same-origin policy
+// https://github.com/brannondorsey/host-validation
 app.use(hostValidation({ hosts: ['127.0.0.1:3000',
                                  'localhost:3000'] }))
 
