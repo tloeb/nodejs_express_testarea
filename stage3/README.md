@@ -1,15 +1,12 @@
-# Generated with express-generator
-
+# Start Server
 ```
-npm install npm-generator -g
-express --no-view app
 DEBUG=myapp:* npm start
 ```
 
 # Setup mongodb
 
 ```
-sudo docker run -d -p 27017:27017 -v ./data:/data/db mongo
+docker-compose up
 ```
 
 # Persistent User List
