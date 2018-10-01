@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mongodb_stage3:
+  mongodb_stage4:
     image: mongo:latest
     container_name: "mongodb"
     environment:
