@@ -1,20 +1,26 @@
 import userModel from '../model/user';
 import mongoose from 'mongoose';
 
-const User = mongoose.model('User', userModel);
 
-export function getUsers(res) {
-    User.find({}, (error, downloads) => {
-        if (error) { res.json(error) }
-        res.json(downloads)
-    });
-}
+export default class UserController{
+    
+    constructor(){
+        this.User = mongoose.model('User', userModel);
+    }
 
-export function createUser(username) {
-    // Create a new user
-    var new_user = new User({name: username});
-    new_user.save(function (err, new_user) {
-      if (err) return console.error(err);
-      console.log(new_user);
-    });
+    getUsers(res) {
+        this.User.find({}, (error, downloads) => {
+            if (error) { res.json(error) }
+            res.json(downloads)
+        });
+    }
+    
+    createUser(username) {
+        // Create a new user
+        let new_user = new this.User({name: username});
+        new_user.save(function (err, new_user) {
+          if (err) return console.error(err);
+          console.log(new_user);
+        });
+    }
 }

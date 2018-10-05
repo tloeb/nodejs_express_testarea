@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import * as Users from '../controllers/users';
+import UserController from '../controllers/users';
 
 const routes = Router();
+const usercontroller = new UserController();
 
-let user_list = ["Anna", "Bob"];
 
 routes.get('/', (req, res) => {
-    Users.getUsers(res);
+    usercontroller.getUsers(res);
 });
 
-routes.post('/create', (req, res) => 
+routes.post('/', (req, res) => 
     {console.log(req.body);
     if (req.body.name != null){
-      Users.createUser(req.body.name)
+      usercontroller.createUser(req.body.name)
       res.statusCode = 201;
       res.send();
     }

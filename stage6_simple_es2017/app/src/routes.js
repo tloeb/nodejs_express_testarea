@@ -5,7 +5,10 @@ const routes = Router();
 /**
  * GET home page
  */
-routes.get('/', (req, res) => {
+
+// http://localhost:8080/user/foo
+
+routes.get('/foo', (req, res) => {
   res.send("foobar");
 });
 

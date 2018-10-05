@@ -8,7 +8,7 @@ routes.get('/', (req, res) => {
     res.json(user_list);
 });
 
-routes.post('/create', (req, res) => 
+routes.post('/', (req, res) => 
     {console.log(req.body);
     if (req.body.name != null){
       user_list.push(
